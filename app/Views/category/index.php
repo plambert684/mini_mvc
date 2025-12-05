@@ -2,7 +2,7 @@
 /** @var array<int, \mini_mvc\app\Models\Category> $categories */
 ?>
 <h1>Catégories</h1>
-<table border="1" cellpadding="4" cellspacing="0">
+<table>
     <thead>
     <tr>
         <th>ID</th>
