@@ -5,8 +5,8 @@ declare(strict_types=1);
 // Déclare l'espace de noms pour ce contrôleur
 namespace mini_mvc\app\Controllers;
 // Importe la classe de base Controller du noyau
-use php\src\mini_mvc\app\Core\Controller;
-use php\src\mini_mvc\app\Models\User;
+use mini_mvc\app\Core\Controller;
+use mini_mvc\app\Models\User;
 
 // Déclare la classe finale HomeController qui hérite de Controller
 final class HomeController extends Controller

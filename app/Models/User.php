@@ -3,7 +3,7 @@
 // Ici je définit le namespace ou il y aura ma class
 namespace mini_mvc\app\Models;
 
-use php\src\mini_mvc\app\Core\Database;
+use mini_mvc\app\Core\Database;
 use PDO;
 
 class User
