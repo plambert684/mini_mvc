@@ -40,9 +40,20 @@ final class Router
             }
         }
 
-        // Si aucune route ne correspond, renvoie un 404 minimaliste
+        // Si aucune route ne correspond, renvoie un 404 JSON
         http_response_code(404);
-        echo '404 Not Found';
+        if (!headers_sent()) {
+            header('Content-Type: application/json; charset=utf-8');
+            header('Access-Control-Allow-Origin: *');
+        }
+        echo json_encode([
+            'error' => [
+                'code' => 404,
+                'message' => 'Not Found',
+                'path' => $path,
+                'method' => $method,
+            ],
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }
 

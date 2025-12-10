@@ -1,8 +1,7 @@
 <?php
-// Strict types for safety
+
 declare(strict_types=1);
 
-// Use Composer autoload if available
 $autoloadPath = dirname(__DIR__) . '/vendor/autoload.php';
 if (file_exists($autoloadPath)) {
     require $autoloadPath;
@@ -17,7 +16,6 @@ use mini_mvc\app\Controllers\CommandeController;
 use mini_mvc\app\Controllers\AdminController;
 use mini_mvc\app\Controllers\LigneCommandeController;
 
-// Declare the routes table
 $routes = [
     ['GET', '/', [HomeController::class, 'index']],
     ['GET', '/categories', [CategoryController::class, 'index']],
@@ -28,7 +26,6 @@ $routes = [
     ['GET', '/lignes-commandes', [LigneCommandeController::class, 'index']],
 ];
 
-// Instantiate the router and dispatch the current request
 $router = new Router($routes);
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $uri = $_SERVER['REQUEST_URI'] ?? '/';

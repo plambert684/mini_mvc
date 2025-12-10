@@ -10,9 +10,12 @@ class LigneCommandeController extends Controller
     public function index(): void
     {
         $lignes = LigneCommande::getAll();
-        $this->render('ligne_commande/index', [
-            'title' => 'Liste des lignes de commande',
-            'lignes' => $lignes,
+        $this->json([
+            'data' => $lignes,
+            'meta' => [
+                'title' => 'Liste des lignes de commande',
+                'count' => is_countable($lignes) ? count($lignes) : null,
+            ],
         ]);
     }
 }

@@ -10,9 +10,12 @@ class ProduitController extends Controller
     public function index(): void
     {
         $produits = Produit::getAll();
-        $this->render('produit/index', [
-            'title' => 'Liste des produits',
-            'produits' => $produits,
+        $this->json([
+            'data' => $produits,
+            'meta' => [
+                'title' => 'Liste des produits',
+                'count' => is_countable($produits) ? count($produits) : null,
+            ],
         ]);
     }
 }

@@ -10,9 +10,12 @@ class CategoryController extends Controller
 
     public function index() {
         $categories = Category::getAll();
-        $this->render('category/index', [
-            'title' => 'Liste des catégories',
-            'categories' => $categories,
+        $this->json([
+            'data' => $categories,
+            'meta' => [
+                'title' => 'Liste des catégories',
+                'count' => is_countable($categories) ? count($categories) : null,
+            ],
         ]);
     }
 

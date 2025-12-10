@@ -11,24 +11,26 @@ use mini_mvc\app\Models\User;
 // Déclare la classe finale HomeController qui hérite de Controller
 final class HomeController extends Controller
 {
-    // Déclare la méthode d'action par défaut qui ne retourne rien
+    // Page d'accueil (API): renvoie des infos minimales
     public function index(): void
     {
-        // Appelle le moteur de rendu avec la vue et ses paramètres
-        $this->render('home/index', params: [
-            // Définit le titre transmis à la vue
-            'title' => 'Mini MVC',
-            'prenom' => 'Toto',
-            'prenom2' => 'Tata',
+        $this->json([
+            'message' => 'Bienvenue sur l\'API Mini MVC',
+            'meta' => [
+                'app' => 'Mini MVC',
+                'env' => getenv('APP_ENV') ?: 'prod',
+            ],
         ]);
     }
 
     public function users(): void
     {
-        // Appelle le moteur de rendu avec la vue et ses paramètres
-        $this->render('home/users', params: [
-            // Définit le titre transmis à la vue
-            'users' => $users = User::getAll(),
+        $users = User::getAll();
+        $this->json([
+            'data' => $users,
+            'meta' => [
+                'count' => is_countable($users) ? count($users) : null,
+            ],
         ]);
     }
 }

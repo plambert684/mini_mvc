@@ -10,9 +10,12 @@ class ClientController extends Controller
     public function index(): void
     {
         $clients = Client::getAll();
-        $this->render('client/index', [
-            'title' => 'Liste des clients',
-            'clients' => $clients,
+        $this->json([
+            'data' => $clients,
+            'meta' => [
+                'title' => 'Liste des clients',
+                'count' => is_countable($clients) ? count($clients) : null,
+            ],
         ]);
     }
 }

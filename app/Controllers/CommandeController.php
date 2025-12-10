@@ -10,9 +10,12 @@ class CommandeController extends Controller
     public function index(): void
     {
         $commandes = Commande::getAll();
-        $this->render('commande/index', [
-            'title' => 'Liste des commandes',
-            'commandes' => $commandes,
+        $this->json([
+            'data' => $commandes,
+            'meta' => [
+                'title' => 'Liste des commandes',
+                'count' => is_countable($commandes) ? count($commandes) : null,
+            ],
         ]);
     }
 }
